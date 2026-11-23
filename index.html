@@ -2,209 +2,517 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#171922">
-<title>Калькулятор визиток для Принт71 · WEBNICSS</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#f5f4ef">
+<meta name="description" content="Демонстрация конструктора заказа полиграфии для Принт71 от WEBNICSS.">
+<title>Заказ в печать — Принт71 · WEBNICSS</title>
 <style>
-:root{color-scheme:light;--ink:#171922;--paper:#f3f2ec;--white:#fffefa;--blue:#253fe4;--line:#d5d5cc;--muted:#535666;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:var(--paper)}
+:root{color-scheme:light;--paper:#f5f4ef;--white:#fffefa;--ink:#161a2a;--muted:#565969;--line:#d7d8df;--blue:#293de5;--light:#edf0ff;--lime:#d9fa78;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:var(--paper)}
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 body{margin:0}
 a{color:inherit;text-underline-offset:.22em}
-button,select,textarea{font:inherit}
+button,input,select,textarea{font:inherit}
 button,select{cursor:pointer}
-:focus-visible{outline:3px solid #465bff;outline-offset:4px}
-.wrap{width:min(1190px,calc(100% - 80px));margin-inline:auto}
-header .wrap,footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px}
-header{border-bottom:1px solid var(--line)}
-header .wrap{min-height:72px}
-.brand{font-size:1.04rem;font-weight:900;letter-spacing:-.04em}
+:focus-visible{outline:3px solid #6174ff;outline-offset:3px}
+.wrap{width:min(1200px,calc(100% - 72px));margin-inline:auto}
+.site-header{border-bottom:1px solid var(--line);background:var(--white)}
+.site-header .wrap,.site-footer .wrap{display:flex;justify-content:space-between;align-items:center;min-height:58px;gap:12px}
+.brand{font-weight:900;font-size:1.23rem;letter-spacing:-.075em}
 .brand b{color:var(--blue)}
-.tag{font-size:.82rem;font-weight:bold;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
-.hero{display:grid;grid-template-columns:1fr .86fr;gap:24px;align-items:center;padding-block:36px;border-bottom:1px solid var(--line)}
-h1{font-size:clamp(3rem,7.2vw,6.7rem);letter-spacing:-.086em;line-height:.88;margin:0 0 19px}
-.hero p{line-height:1.5;margin:0;color:var(--muted);max-width:34ch}
-.specimen{position:relative;display:grid;place-items:center;min-height:202px;isolation:isolate;overflow:hidden;background:repeating-linear-gradient(90deg,transparent 0 23px,#262a3c10 23px 24px),repeating-linear-gradient(0deg,transparent 0 23px,#262a3c10 23px 24px),#e9e8e0}
-.card{position:absolute;width:min(52%,255px);aspect-ratio:1.8;box-shadow:0 4px 0 #181b353d,0 12px 20px #17192232}
-.card.back{background:var(--white);transform:translate(-26%,5%) rotate(-13deg);border-bottom:3px solid #dbd9cf}
-.card.back::before{content:"";position:absolute;inset:14% 10%;background:repeating-linear-gradient(0deg,transparent 0 10px,#1f233614 10px 11px)}
-.card.front{background:var(--blue);color:white;transform:translate(19%,-8%) rotate(10deg);display:flex;flex-direction:column;justify-content:space-between;padding:12px 14px;overflow:hidden}
-.front::after{content:"";position:absolute;inset:-55% -25% -48% 38%;transform:rotate(29deg);background:repeating-linear-gradient(90deg,transparent 0 8px,#ffffff30 8px 9px);pointer-events:none}
-.front strong{font-size:clamp(1.1rem,3vw,2.3rem);letter-spacing:-.08em}
-.front small{font-size:.72rem;letter-spacing:.1em}
-.spec-label{position:absolute;bottom:8px;left:10px;font-size:.71rem;font-weight:bold;letter-spacing:.08em;color:#494b58}
-.calculator{display:grid;grid-template-columns:1fr .55fr;gap:26px;padding-block:26px}
-form{background:var(--white);border:1px solid var(--line);padding:24px 26px}
-h2{font-size:1.42rem;letter-spacing:-.035em;margin:0 0 16px}
-fieldset{min-width:0;border:0;border-top:1px solid var(--line);margin:0;padding:13px 0 14px}
-legend{float:left;width:100%;padding:0;margin:0 0 8px;font-weight:bold;font-size:.92rem}
-.choices{display:flex;flex-wrap:wrap;gap:7px;clear:both}
-.choice{position:relative;display:inline-flex}
-.choice input{position:absolute;opacity:0;width:1px;height:1px}
-.choice span,select{display:block;background:var(--white);border:1px solid #b8bbc1;color:var(--ink);border-radius:3px;padding:9px 12px;font-size:.91rem}
-.choice span{cursor:pointer}
-.choice input:checked+span{background:var(--blue);border-color:var(--blue);color:white}
-.choice input:focus-visible+span{outline:3px solid #465bff;outline-offset:3px}
-.choice span:hover,select:hover{border-color:var(--blue)}
-.custom{display:flex;align-items:center;gap:9px;font-size:.88rem;color:var(--muted)}
-select{appearance:none;min-width:6.5em;padding-right:27px;background:linear-gradient(45deg,transparent 50%,currentColor 50%) right 15px center/5px 5px no-repeat,linear-gradient(135deg,currentColor 50%,transparent 50%) right 10px center/5px 5px no-repeat}
-.specs{border-top:1px solid var(--line);padding-top:12px;font-size:.9rem;color:var(--muted);line-height:1.45;margin:0}
-.total{background:var(--ink);color:#fffefa;align-self:start;padding:25px 26px}
-.total h2{font-size:1rem;letter-spacing:0;margin-bottom:9px}
-.price{display:block;font-size:clamp(2.5rem,5.7vw,4.6rem);font-weight:900;line-height:1.04;letter-spacing:-.073em;white-space:nowrap}
-.unit{display:block;color:#c6c9dc;font-size:.92rem;margin:8px 0 19px}
-dl{margin:0 0 17px}
-dl div{display:flex;justify-content:space-between;gap:14px;border-top:1px solid #444655;padding:9px 0;font-size:.89rem}
-dt{color:#c6c9dc}
-dd{margin:0;text-align:right}
-.primary{background:#e3e8ff;color:#151b47;border:0;border-radius:3px;padding:11px 14px;width:100%;min-height:44px;font-weight:bold}
-.primary:hover{background:#fff}
-.hint{color:#c6c9dc;font-size:.81rem;line-height:1.45;margin:12px 0 0}
-footer{border-top:1px solid var(--line);color:var(--muted);font-size:.88rem}
-footer .wrap{min-height:60px;flex-wrap:wrap;padding-block:12px}
-dialog{color:var(--ink);background:var(--white);border:1px solid var(--line);padding:24px;width:min(470px,calc(100% - 28px));max-height:90dvh}
-dialog::backdrop{background:#171922b0}
-.dialog-heading{display:flex;justify-content:space-between;align-items:center;gap:12px}
-.dialog-heading h2{margin:0}
-.close{background:none;border:1px solid var(--line);font-size:1.45rem;line-height:1;min-width:40px;min-height:40px}
-dialog p{font-size:.92rem;line-height:1.45}
-textarea{width:100%;resize:vertical;border:1px solid #aaaebc;background:white;color:var(--ink);padding:10px;font-size:.9rem;line-height:1.4;border-radius:3px}
-dialog .primary{background:var(--blue);color:white;margin-top:9px}
-dialog .primary:hover{background:#1832cc}
-.status{display:block;min-height:1.2em;margin-top:8px;font-size:.88rem;color:var(--muted)}
-@media(max-width:780px){.wrap{width:calc(100% - 32px)}.hero{grid-template-columns:1fr 1fr}.calculator{grid-template-columns:1fr;gap:14px}.hero{padding-block:25px}.specimen{min-height:146px}}
-@media(max-width:500px){header .wrap{min-height:55px;gap:9px}.tag{font-size:.68rem}.hero{gap:16px;grid-template-columns:1fr;padding-block:20px}h1{margin-bottom:10px}.specimen{min-height:122px}.card{width:142px}.front strong{font-size:1.35rem}.calculator{padding-block:14px}form,.total{padding:17px 15px}.choice span,select{padding-block:10px}.custom{width:100%;margin-top:2px}.total .price{font-size:3.5rem}}
+.demo,.muted{color:var(--muted)}
+.demo{font-size:.82rem}
+.hero{display:grid;grid-template-columns:1.18fr 1fr;align-items:center;gap:30px;min-height:233px;padding-block:24px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:clamp(3rem,7vw,6.1rem);letter-spacing:-.085em;line-height:.94;margin:0 0 12px}
+.hero p{max-width:38ch;line-height:1.48;margin:0;color:var(--muted);font-size:1rem}
+.artboard{position:relative;display:grid;place-items:center;isolation:isolate;overflow:hidden;min-height:174px;background:radial-gradient(#293de546 1px,transparent 1.5px) 0 0/9px 9px,#e4e9fc}
+.print{position:absolute;box-shadow:2px 6px 15px #212a5c40}
+.fly-sheet{width:104px;height:129px;background:var(--blue);transform:translate(-90%,-5%) rotate(-13deg);display:grid;align-content:space-between;padding:10px;color:white}
+.fly-sheet strong{font-size:2.6rem;letter-spacing:-.09em}
+.fly-sheet span,.fold-sheet span{font-size:.68rem;font-weight:bold;letter-spacing:.06em}
+.fold-sheet{width:164px;height:115px;transform:translate(36%,-5%) rotate(12deg);background:linear-gradient(90deg,#f9aad7 0 34%,#f8cee7 34% 66%,#fae5f1 66%);color:#422336;padding:10px 8px;display:grid;align-content:space-between}
+.fold-sheet strong{font-size:1.52rem;letter-spacing:-.085em}
+.name-sheet{width:125px;height:67px;transform:translate(3%,46%) rotate(-6deg);background:var(--lime);font-size:1.65rem;font-weight:900;letter-spacing:-.07em;display:grid;place-items:center;border-bottom:3px solid #bbd965}
+.art-label{position:absolute;bottom:8px;right:9px;color:#494d64;font-size:.68rem;font-weight:bold;letter-spacing:.11em}
+.workspace{display:grid;grid-template-columns:minmax(0,1fr) minmax(285px,.55fr);gap:22px;align-items:start;padding-block:22px 32px}
+.builder,.cart{min-width:0}
+.builder{border:1px solid var(--line);background:var(--white)}
+.builder-inner,.cart{padding:20px}
+h2{font-size:1.31rem;letter-spacing:-.045em;margin:0}
+.categories{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:13px 0 16px}
+.category{min-height:44px;border:1px solid var(--line);background:var(--white);padding:7px 3px;color:var(--ink);font-size:.9rem;font-weight:bold}
+.category[aria-pressed="true"]{background:var(--light);border-color:var(--blue);color:#1b2bbc}
+.category:hover{border-color:var(--blue)}
+.config-title{border-top:1px solid var(--line);padding-top:14px}
+.config-title p{font-size:.9rem;color:var(--muted);margin:5px 0 13px;line-height:1.4}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 12px}
+.field{min-width:0;display:grid;align-content:start;gap:5px;font-size:.88rem;font-weight:bold}
+.field.full{grid-column:1/-1}
+select,input[type=number],input[type=date],textarea{width:100%;min-height:44px;min-width:0;border:1px solid #abadbb;background-color:white;color:var(--ink);padding:9px 10px;border-radius:3px;font-size:1rem;font-weight:400}
+select{appearance:none;padding-right:28px;background-image:linear-gradient(45deg,transparent 50%,#52576f 50%),linear-gradient(135deg,#52576f 50%,transparent 50%);background-position:right 15px center,right 10px center;background-size:5px 5px;background-repeat:no-repeat}
+textarea{resize:vertical}
+.validation{margin:10px 0 0;color:#a22037;font-size:.9rem}
+.quote{display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px;margin-top:15px;border-top:1px solid var(--line);padding-top:13px}
+.quote strong{display:block;font-size:1.75rem;letter-spacing:-.06em}
+.quote small,.fine{font-size:.84rem;line-height:1.43;color:var(--muted)}
+.builder-message{margin:10px 0 0;color:var(--muted);font-size:.88rem}.builder-message a{color:#1b2bbc;font-weight:bold}.source{display:inline-block;margin-top:9px;font-size:.84rem;color:var(--muted)}
+.btn{min-height:44px;font-weight:bold;padding:9px 13px;border:1px solid transparent;border-radius:3px}
+.primary{background:var(--blue);color:white}
+.primary:hover{background:#1c2dc9}
+.subtle{background:var(--light);color:#1c2cc4}
+.subtle:hover{background:#dae0ff}
+.btn:disabled{opacity:.55;cursor:default}
+.cart{position:sticky;top:14px;background:var(--ink);color:var(--white)}
+.cart-header{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.cart-count{font-size:.89rem;color:#c4c8df}
+.cart-empty{border-top:1px solid #444958;margin-top:13px;padding-top:13px;line-height:1.45;color:#d8dbea}
+.cart-empty p{margin:0 0 11px}
+.cart-empty .btn{width:100%;text-align:center}
+.cart-list{list-style:none;margin:12px 0 0;padding:0}
+.line{border-top:1px solid #444958;padding:10px 0;font-size:.88rem}
+.line-title{display:flex;justify-content:space-between;gap:10px}
+.line-title strong:last-child{text-align:right;white-space:nowrap;color:#e2f6ad}
+.line p{margin:5px 0 1px;color:#d1d4e7;line-height:1.4}
+.line-actions{display:flex;gap:13px}
+.link-btn{border:0;padding:0;min-height:30px;background:transparent;color:#dce1ff;text-decoration:underline;text-underline-offset:.17em;font-size:.81rem}
+.link-btn:hover{color:white}
+.cart-totals{border-top:1px solid #444958;margin-top:8px;padding-top:11px}
+.cart-totals output{display:block;font-weight:900;font-size:2.18rem;letter-spacing:-.06em;margin:4px 0 10px}
+.cart-totals small{display:block;color:#d1d4e7;line-height:1.4;margin-bottom:10px}
+.cart .primary{background:var(--lime);color:#1c2a15;width:100%}
+.cart .primary:hover{background:#ecffa9}
+.status{margin:8px 0 0;min-height:1.1em;font-size:.85rem;color:#d1d4e7}
+.status:empty{display:none}
+.site-footer{border-top:1px solid var(--line);font-size:.85rem;color:var(--muted)}
+dialog{width:min(585px,calc(100% - 28px));max-height:92dvh;color:var(--ink);background:var(--white);border:1px solid var(--line);padding:20px}
+dialog::backdrop{background:#161a2ab0}
+.dialog-head,.dialog-actions{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.dialog-actions{justify-content:flex-start;flex-wrap:wrap;margin-top:9px}
+.close{background:white;color:var(--ink);border:1px solid var(--line);min-height:40px;min-width:40px;font-size:1.4rem}
+dialog .fields{margin:10px 0}
+dialog .status{color:var(--muted)}
+#draft{font-size:.9rem}
+@media(max-width:870px){.wrap{width:calc(100% - 36px)}.workspace{grid-template-columns:minmax(0,1fr) minmax(258px,.62fr);gap:12px}.builder-inner,.cart{padding:15px}.categories{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.wrap{width:calc(100% - 24px)}.hero{grid-template-columns:1fr;gap:12px;min-height:auto;padding-block:15px}.hero h1{font-size:clamp(2.85rem,10vw,4.1rem);margin-bottom:7px}.artboard{min-height:112px}.artboard .print{scale:.72}.fly-sheet{transform:translate(-102%,-2%) rotate(-13deg)}.fold-sheet{transform:translate(45%,-5%) rotate(12deg)}.name-sheet{transform:translate(1%,37%) rotate(-6deg)}.art-label{font-size:.58rem}.workspace{grid-template-columns:1fr;padding-block:12px 20px}.cart{position:static}.site-footer .wrap{flex-wrap:wrap;min-height:48px}.builder-inner,.cart{padding:13px}.categories{margin-bottom:12px}}
+@media(max-width:365px){.fields,.quote{grid-template-columns:1fr}.art-label{display:none}}
 </style>
 </head>
 <body>
-<header><div class="wrap"><span class="brand">ПРИНТ<b>71</b> / Визитки</span><span class="tag">Демо от WEBNICSS</span></div></header>
+<header class="site-header"><div class="wrap"><span class="brand">ПРИНТ<b>71</b></span><span class="demo">Демо от WEBNICSS</span></div></header>
 <main class="wrap">
   <section class="hero" aria-labelledby="title">
-    <div><h1 id="title">Печать<br>визиток</h1><p>Выберите тираж, срок и ламинацию. Стоимость обновится сразу.</p></div>
-    <div class="specimen" aria-hidden="true">
-      <div class="card back"></div><div class="card front"><strong>ПРИНТ71</strong><small>ПОЛИГРАФИЯ · ТУЛА</small></div>
-      <span class="spec-label">90 × 50 ММ</span>
+    <div><h1 id="title">Заказ в печать</h1><p>Выберите полиграфию, соберите смету и отправьте типографии все параметры одним сообщением.</p></div>
+    <div class="artboard" aria-hidden="true">
+      <div class="print fly-sheet"><span>ПЕЧАТЬ</span><strong>А6</strong></div>
+      <div class="print fold-sheet"><span>БУМАГА / 130 Г/М²</span><strong>Буклет</strong></div>
+      <div class="print name-sheet">ПРИНТ71</div>
+      <span class="art-label">ТУЛА / ПОЛИГРАФИЯ</span>
     </div>
   </section>
-  <section class="calculator" aria-label="Калькулятор печати">
-    <form id="options">
-      <h2>Параметры печати</h2>
-      <fieldset><legend>Тираж, шт.</legend><div class="choices">
-        <label class="choice"><input type="radio" name="quantity" value="100"><span>100</span></label>
-        <label class="choice"><input type="radio" name="quantity" value="500" checked><span>500</span></label>
-        <label class="choice"><input type="radio" name="quantity" value="1000"><span>1 000</span></label>
-        <label class="choice"><input type="radio" name="quantity" value="2000"><span>2 000</span></label>
-        <label class="choice"><input type="radio" name="quantity" value="5000"><span>5 000</span></label>
-        <label class="custom" for="large">Большой тираж <select id="large" name="large"><option value="">Выбрать</option><option value="10000">10 000</option><option value="20000">20 000</option><option value="30000">30 000</option><option value="50000">50 000</option></select></label>
-      </div></fieldset>
-      <fieldset><legend>Срок печати</legend><div class="choices">
-        <label class="choice"><input type="radio" name="speed" value="fast" checked><span>5–7 рабочих дней</span></label>
-        <label class="choice"><input type="radio" name="speed" value="standard"><span>10–14 рабочих дней</span></label>
-      </div></fieldset>
-      <fieldset><legend>Отделка</legend><div class="choices">
-        <label class="choice"><input type="radio" name="finish" value="plain" checked><span>Без ламинации</span></label>
-        <label class="choice"><input type="radio" name="finish" value="laminated"><span>Двусторонняя ламинация</span></label>
-      </div></fieldset>
-      <p class="specs">90 × 50 мм · мелованный картон 300 г/м² · 4+4, цвет с двух сторон</p>
-    </form>
-    <aside class="total" aria-labelledby="total-label">
-      <h2 id="total-label">Стоимость тиража</h2>
-      <div aria-live="polite" aria-atomic="true"><strong class="price" id="price">3 200 ₽</strong><span class="unit" id="unit">6,40 ₽ за штуку</span></div>
-      <dl><div><dt>Тираж</dt><dd id="qty-summary">500 шт.</dd></div><div><dt>Срок печати</dt><dd id="speed-summary">5–7 рабочих дней</dd></div><div><dt>Отделка</dt><dd id="finish-summary">Без ламинации</dd></div></dl>
-      <button type="button" class="primary" id="show-request">Сформировать заявку</button>
-      <p class="hint">Расчёт по <a href="https://print71.biz/poligrafiya/vizitki" target="_blank" rel="noopener">открытому прайсу Принт71</a>. Итоговую сумму и сроки подтверждает типография.</p>
+  <div class="workspace">
+    <section class="builder" aria-labelledby="builder-title">
+      <div class="builder-inner">
+        <h2 id="builder-title">Что печатаем?</h2>
+        <div class="categories" id="categories" role="group" aria-label="Вид продукции">
+          <button type="button" class="category" data-product="cards" aria-pressed="true">Визитки</button>
+          <button type="button" class="category" data-product="flyers" aria-pressed="false">Листовки</button>
+          <button type="button" class="category" data-product="brochures" aria-pressed="false">Буклеты</button>
+          <button type="button" class="category" data-product="stickers" aria-pressed="false">Наклейки</button>
+        </div>
+        <form id="builder-form">
+          <div class="config-title">
+            <h2 id="product-title">Визитки</h2>
+            <p id="product-spec"></p>
+          </div>
+          <div class="fields" id="product-fields"></div>
+          <p class="validation" id="field-error" hidden></p>
+          <div class="quote">
+            <div aria-live="polite"><strong id="item-price"></strong><small id="item-note"></small></div>
+            <div><button class="btn primary" id="add" type="submit">Добавить в заказ</button> <button class="btn subtle" id="cancel" type="button" hidden>Отмена</button></div>
+          </div>
+          <p class="builder-message" id="builder-message" hidden><span id="builder-status" role="status"></span> <a href="#cart">К смете</a></p>
+          <a class="source" id="source" href="https://print71.biz/poligrafiya/vizitki" target="_blank" rel="noopener">Прайс Принт71</a>
+        </form>
+      </div>
+    </section>
+    <aside class="cart" id="cart" aria-labelledby="cart-title">
+      <div class="cart-header"><h2 id="cart-title">Ваш заказ</h2><span class="cart-count" id="cart-count"></span></div>
+      <div class="cart-empty" id="empty"><p>Добавьте продукцию или откройте пример с четырьмя позициями.</p><button type="button" class="btn subtle" id="example">Показать пример заказа</button></div>
+      <ol class="cart-list" id="cart-list"></ol>
+      <div class="cart-totals" id="cart-totals" hidden>
+        <span>Предварительная смета</span>
+        <output id="cart-total"></output>
+        <small id="cart-note"></small>
+        <button class="btn primary" type="button" id="draft-open">Сформировать заявку</button>
+      </div>
+      <p id="cart-status" class="status" role="status"></p>
     </aside>
-  </section>
+  </div>
 </main>
-<footer><div class="wrap"><span>Демонстрация для полиграфического центра «Принт71»</span><a href="https://webnicss.ru">WEBNICSS</a></div></footer>
+<footer class="site-footer"><div class="wrap"><span>Демонстрация для «Принт71»</span><a href="https://webnicss.ru">WEBNICSS</a></div></footer>
 <dialog id="request" aria-labelledby="request-title">
-  <div class="dialog-heading"><h2 id="request-title">Черновик заявки</h2><form method="dialog" style="padding:0;border:0;background:none"><button class="close" aria-label="Закрыть">×</button></form></div>
-  <p>Скопируйте расчёт в переписку с типографией. Готовый макет можно прикрепить там же.</p>
-  <textarea id="request-text" rows="7" readonly aria-label="Текст заявки"></textarea>
-  <button type="button" class="primary" id="copy">Скопировать текст</button>
-  <output class="status" id="status" aria-live="polite"></output>
+  <div class="dialog-head"><h2 id="request-title">Заявка в типографию</h2><form method="dialog"><button class="close" aria-label="Закрыть">×</button></form></div>
+  <p class="fine">Добавьте пожелания, затем скопируйте заявку в ВК. Если макеты готовы, приложите файлы в переписке.</p>
+  <div class="fields">
+    <label class="field">Желаемая дата готовности<input type="date" id="requested-date"></label>
+    <label class="field">Получение<select id="delivery"><option value="">Пока не выбрано</option><option>Самовывоз</option><option>Нужна доставка</option></select></label>
+    <label class="field full">Комментарий<textarea id="comment" rows="2" maxlength="600" placeholder="Например, разделить тираж на два макета"></textarea></label>
+    <label class="field full">Текст заявки<textarea id="draft" rows="7" readonly></textarea></label>
+  </div>
+  <div class="dialog-actions"><button type="button" class="btn primary" id="copy">Скопировать для ВК</button><button type="button" class="btn subtle" id="download">Скачать смету</button></div>
+  <p id="draft-status" class="status" role="status"></p>
 </dialog>
 <script>
-const quantities = [100, 500, 1000, 2000, 5000, 10000, 20000, 30000, 50000];
-// Открытый прайс Принт71, цены за штуку в копейках.
-const rates = {
-  fast: {
-    plain: [2000, 640, 350, 260, 237, 198, 180, 170, 158],
-    laminated: [3500, 1550, 810, 485, 439, 356, 340, 335, 325]
+const cardTiers = [100,500,1000,2000,5000,10000,20000,30000,50000];
+const flyerTiers = [500,1000,2000,3000,4000,5000,10000];
+const brochureTiers = [100,500,1000,2000,3000,4000,5000,10000,20000];
+const stickerTiers = [1000,2000,3000,4000,5000];
+
+// Таблицы с открытых страниц Принт71. null — цену уточняет менеджер.
+const cardRates = {
+  fast: {plain:[20,6.4,3.5,2.6,2.37,1.98,1.8,1.7,1.58], laminated:[35,15.5,8.1,4.85,4.39,3.56,3.4,3.35,3.25]},
+  standard: {plain:[17,4,2.2,1.67,1.5,1.39,1.3,1.2,1], laminated:[21,5.76,3.3,2.90,2.5,2.31,2.2,2.1,2]}
+};
+const flyerRates = {
+  a6: {one:[7.5,4,2.8,2.2,1.8,1.5,1.3], two:[8,5.2,3.2,2.6,1.92,1.7,1.45]},
+  a5: {one:[13,null,6,3.7,3.1,2.5,2.3], two:[14.5,8.5,6.2,4.1,3.4,3.01,2.5]},
+  a4: {one:[25,14,8,6.3,5.6,5,3.8], two:[28,15.5,8.9,7,6,5.35,4.6]},
+  long: {one:[9,6,3.5,2.8,1.9,1.8,1.5], two:[10,6.5,4,3,2.2,2,1.65]}
+};
+const brochureRates = {
+  euro:[90,28,14.55,9.5,7.9,7.2,6.1,5,null],
+  a5:[85,27,14.3,9.2,7.2,6.55,5.9,4.8,null],
+  a6:[65,16,9.2,5.84,4.75,3.95,3.6,2.87,null]
+};
+const paperRates = {
+  small:[2.6,2.47,2.42,2.34,2.21],a7:[3.29,3.13,3.06,2.94,2.8],
+  a6:[4.72,4.48,4.39,4.25,4.01],a5:[7.42,6.69,6.55,6.34,5.99],
+  a4:[10,9.54,9.34,9.04,8.54]
+};
+const filmRates = {
+  opaque:{plain:[560,470,450],cut:[1000,950,900]},
+  clear:{plain:[560,530,500],cut:[1300,1200,1100]}
+};
+
+const num = new Intl.NumberFormat('ru-RU',{maximumFractionDigits:2});
+const rub = (amount) => num.format(amount) + ' ₽';
+const roundMoney = (amount) => Math.round(amount * 100) / 100;
+const select = (key,label,options) => ({key,label,options});
+const quantity = (tiers) => select('quantity','Тираж, шт.',tiers.map(n=>[String(n),num.format(n)]));
+const artwork = select('artwork','Макет',[['ready','Макет есть'],['design','Нужен дизайн'],['later','Макет пришлю позже']]);
+const formats = [['a6','А6 · 105 × 148 мм'],['a5','А5 · 148 × 210 мм'],['a4','А4 · 210 × 297 мм']];
+const stickerMaterial = select('material','Материал',[['paper','Самоклеящаяся бумага'],['opaque','Непрозрачная плёнка Orajet'],['clear','Прозрачная плёнка с белым']]);
+const paperFormat = select('format','Формат',[['small','88 × 48 мм'],['a7','А7 · 74 × 105 мм'],...formats]);
+const areaField = {key:'area',label:'Площадь печати, м²',min:0.1,max:1000,step:0.1};
+const finish = select('finish','Отделка',[['plain','Без ламинации'],['laminated','Двусторонняя ламинация']]);
+const cut = select('cut','Контурная резка',[['plain','Без резки'],['cut','С контурной резкой']]);
+const speed = select('speed','Срок печати',[['fast','5–7 рабочих дней'],['standard','10–14 рабочих дней']]);
+const lookup = (rows,tiers,value) => rows[tiers.indexOf(Number(value))] ?? null;
+const products = {
+  cards:{
+    name:'Визитки',slug:'vizitki',spec:'90 × 50 мм · картон 300 г/м² · цвет с двух сторон',
+    defaults:{quantity:'500',speed:'fast',finish:'plain',artwork:'ready'},
+    fields:()=>[quantity(cardTiers),speed,finish,artwork],
+    price:c=>lookup(cardRates[c.speed][c.finish],cardTiers,c.quantity)
   },
-  standard: {
-    plain: [1700, 400, 220, 167, 150, 139, 130, 120, 100],
-    laminated: [2100, 576, 330, 290, 250, 231, 220, 210, 200]
+  flyers:{
+    name:'Листовки',slug:'flayery',spec:'Мелованная бумага 130 г/м² · 5–7 рабочих дней по прайсу',
+    defaults:{quantity:'1000',format:'a6',sides:'one',artwork:'ready'},
+    fields:()=>[select('format','Формат',[...formats,['long','210 × 99 мм']]),quantity(flyerTiers),select('sides','Печать',[['one','4+0 · цвет с одной стороны'],['two','4+4 · цвет с двух сторон']]),artwork],
+    price:c=>lookup(flyerRates[c.format][c.sides],flyerTiers,c.quantity)
+  },
+  brochures:{
+    name:'Буклеты',slug:'buklety',spec:'Глянцевая бумага 130 г/м² · цвет с двух сторон',
+    defaults:{quantity:'500',format:'euro',artwork:'ready'},
+    fields:()=>[select('format','Формат и сложение',[['euro','Евробуклет · А4, 2 сгиба'],['a5','Книжка А5'],['a6','Книжка А6']]),quantity(brochureTiers),artwork],
+    price:c=>lookup(brochureRates[c.format],brochureTiers,c.quantity)
+  },
+  stickers:{
+    name:'Наклейки',slug:'nakleyki-stikery',spec:'Бумажные наклейки считаются по тиражу, плёночные — по площади печати.',
+    defaults:{quantity:'1000',format:'small',material:'paper',area:'2',cut:'plain',artwork:'ready'},
+    fields:c=>c.material==='paper'?[stickerMaterial,paperFormat,quantity(stickerTiers),artwork]:[stickerMaterial,areaField,cut,artwork],
+    price:c=>{
+      if(c.material==='paper') return lookup(paperRates[c.format],stickerTiers,c.quantity);
+      const area=Number(c.area);
+      const tier=area<5?0:area<=10?1:2;
+      return filmRates[c.material][c.cut][tier];
+    }
   }
 };
 
-const labels = {
-  fast: '5–7 рабочих дней',
-  standard: '10–14 рабочих дней',
-  plain: 'Без ламинации',
-  laminated: 'Двусторонняя ламинация'
+const $ = id => document.getElementById(id);
+const storageKey = 'print71-order-v2';
+const hasOwn = (record,key) => typeof key==='string' && Object.hasOwn(record,key);
+const make = (tag,text,className) => {
+  const node=document.createElement(tag);
+  if(text) node.textContent=text;
+  if(className) node.className=className;
+  return node;
 };
-const number = new Intl.NumberFormat('ru-RU');
-const unitNumber = new Intl.NumberFormat('ru-RU', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-const byId = (id) => document.getElementById(id);
-const form = byId('options');
-const large = byId('large');
-const dialog = byId('request');
-const requestText = byId('request-text');
-const status = byId('status');
-const presetInputs = [...form.querySelectorAll('[name="quantity"]')];
-
-function update() {
-  const data = new FormData(form);
-  const quantity = Number(data.get('large') || data.get('quantity'));
-  const speed = data.get('speed');
-  const finish = data.get('finish');
-  const rate = rates[speed][finish][quantities.indexOf(quantity)];
-  const price = number.format(quantity * rate / 100) + ' ₽';
-  const quantityLabel = number.format(quantity) + ' шт.';
-  byId('price').textContent = price;
-  byId('unit').textContent = unitNumber.format(rate / 100) + ' ₽ за штуку';
-  byId('qty-summary').textContent = quantityLabel;
-  byId('speed-summary').textContent = labels[speed];
-  byId('finish-summary').textContent = labels[finish];
-  requestText.value = [
-    'Здравствуйте! Прошу подтвердить расчёт печати визиток.',
-    'Формат: 90 × 50 мм',
-    'Материал: мелованный картон 300 г/м²',
-    'Печать: 4+4, цвет с двух сторон',
-    'Тираж: ' + quantityLabel,
-    'Срок печати: ' + labels[speed],
-    'Отделка: ' + labels[finish],
-    'Ориентир по прайсу: ' + price
-  ].join('\n');
+function normalized(type,raw) {
+  const p=products[type];
+  const values={...p.defaults};
+  if(!raw || typeof raw!=='object') return values;
+  for(const field of [...p.fields(p.defaults),...p.fields({...p.defaults,material:raw.material})]) {
+    const value=raw[field.key];
+    if(field.options?.some(([option])=>option===value)) values[field.key]=value;
+    if(field.key==='area' && typeof value==='string' && validArea(value)) values.area=value;
+  }
+  return values;
 }
-let lastPreset = form.elements.quantity.value;
-form.addEventListener('change', ({target}) => {
-  if (target.name === 'quantity') {
-    lastPreset = target.value;
-    large.value = '';
-  }
-  if (target === large) {
-    for (const input of presetInputs) input.checked = !large.value && input.value === lastPreset;
-  }
-  update();
-});
-form.addEventListener('submit', (event) => event.preventDefault());
-byId('show-request').addEventListener('click', () => {
-  status.textContent = '';
-  dialog.showModal();
-});
-byId('copy').addEventListener('click', async () => {
+function validArea(value) {
+  const area=Number(value);
+  return area>=0.1 && area<=1000 && Math.abs(area*10-Math.round(area*10))<1e-8;
+}
+function readCart() {
   try {
-    await navigator.clipboard.writeText(requestText.value);
-    status.textContent = 'Текст скопирован.';
+    const saved=JSON.parse(localStorage.getItem(storageKey));
+    return Array.isArray(saved)?saved.filter(item=>item && hasOwn(products,item.type)).slice(0,50).map(item=>({type:item.type,config:normalized(item.type,item.config)})):[];
   } catch {
-    requestText.focus();
-    requestText.select();
-    status.textContent = 'Текст выделен. Скопируйте его вручную.';
+    return [];
+  }
+}
+function saveCart() {
+  try { localStorage.setItem(storageKey,JSON.stringify(cart)); } catch { /* Смета остаётся открытой в текущей вкладке. */ }
+}
+
+let product='cards';
+let configs=Object.fromEntries(Object.keys(products).map(type=>[type,normalized(type)]));
+let cart=readCart();
+let editIndex=null;
+let beforeEdit=null;
+
+function isFilm(type,config) { return type==='stickers' && config.material!=='paper'; }
+function quoteFor(type,config) {
+  const film=isFilm(type,config);
+  if(film && !validArea(config.area)) return {valid:false};
+  const rate=products[type].price(config);
+  const unit=film?'м²':'шт.';
+  const count=Number(film?config.area:config.quantity);
+  return {valid:true,unit,rate,total:rate===null?null:roundMoney(rate*count)};
+}
+function renderBuilder() {
+  const p=products[product];
+  const config=configs[product];
+  for(const button of $('categories').querySelectorAll('button')) button.setAttribute('aria-pressed',String(button.dataset.product===product));
+  $('builder-message').hidden=true;
+  $('product-title').textContent=p.name;
+  $('product-spec').textContent=p.spec;
+  $('source').href='https://print71.biz/poligrafiya/'+p.slug;
+  const fields=p.fields(config).map(field=>{
+    const label=make('label',field.label,'field');
+    const control=make(field.options?'select':'input');
+    control.name=field.key;
+    if(field.options) {
+      for(const [value,text] of field.options) control.add(new Option(text,value));
+    } else {
+      control.type='number';
+      control.min=field.min;
+      control.max=field.max;
+      control.step=field.step;
+      control.required=true;
+      control.inputMode='decimal';
+      control.setAttribute('aria-describedby','field-error');
+    }
+    control.value=config[field.key];
+    label.append(control);
+    return label;
+  });
+  $('product-fields').replaceChildren(...fields);
+  renderQuote();
+}
+function renderQuote() {
+  const c=configs[product];
+  const quote=quoteFor(product,c);
+  $('field-error').hidden=quote.valid;
+  $('field-error').textContent=quote.valid?'':'Укажите площадь от 0,1 до 1 000 м² с шагом 0,1 м².';
+  $('product-fields').querySelector('[name=area]')?.setAttribute('aria-invalid',String(!quote.valid));
+  $('item-price').textContent=!quote.valid?'—':quote.total===null?'По запросу':rub(quote.total);
+  $('item-note').textContent=quote.rate!=null?rub(quote.rate)+' за '+(quote.unit==='шт.'?'штуку':quote.unit):quote.valid?'Менеджер уточнит цену для этих параметров':'';
+  $('add').textContent=editIndex===null?'Добавить в заказ':'Сохранить позицию';
+  $('add').disabled=!quote.valid || (editIndex===null && cart.length>=50);
+  $('cancel').hidden=editIndex===null;
+}
+
+function detailList(type,config) {
+  return products[type].fields(config).map(field=>{
+    if(field.key==='quantity' || field.key==='area') return [field.label,num.format(Number(config[field.key]))];
+    return [field.label,field.options.find(([value])=>value===config[field.key])[1]];
+  });
+}
+function summarize() {
+  let total=0, priced=0, custom=0, design=0;
+  for(const {type,config} of cart) {
+    const quote=quoteFor(type,config);
+    if(quote.total==null) custom++;
+    else { total=roundMoney(total+quote.total);priced++; }
+    if(config.artwork==='design') design++;
+  }
+  return {total,priced,custom,design};
+}
+function noteFor({custom,design}) {
+  const parts=[];
+  if(custom) parts.push('Позиций с ценой по запросу — '+custom+'.');
+  if(design) parts.push('Дизайн рассчитывается отдельно.');
+  return parts.join(' ');
+}
+function itemButton(text,action,index,name) {
+  const b=make('button',text,'link-btn');
+  b.type='button';
+  b.dataset.action=action;
+  b.dataset.index=index;
+  b.setAttribute('aria-label',text+' — '+name+', позиция '+(index+1));
+  return b;
+}
+function renderCart(message='') {
+  const sum=summarize();
+  $('empty').hidden=cart.length>0;
+  $('cart-totals').hidden=!cart.length;
+  $('cart-count').textContent=cart.length?num.format(cart.length)+' поз.':'';
+  if(!$('builder-message').hidden) {
+    $('builder-message').hidden=!cart.length;
+    $('builder-status').textContent=cart.length?'В заказе '+num.format(cart.length)+' поз.':'';
+  }
+  $('cart-list').replaceChildren(...cart.map(({type,config},index)=>{
+    const name=products[type].name;
+    const quote=quoteFor(type,config);
+    const line=make('li','','line');
+    const title=make('div','','line-title');
+    title.append(make('strong',name),make('strong',quote.total===null?'По запросу':rub(quote.total)));
+    const values=detailList(type,config).map(([key,value])=>key==='Тираж, шт.'?value+' шт.':key===areaField.label?value+' м²':value);
+    const actions=make('div','','line-actions');
+    actions.append(itemButton('Изменить','edit',index,name),itemButton('Повторить','repeat',index,name),itemButton('Убрать','remove',index,name));
+    actions.querySelector('[data-action=repeat]').disabled=cart.length>=50;
+    line.append(title,make('p',values.join(' · ')),actions);
+    return line;
+  }));
+  $('cart-total').textContent=sum.priced?rub(sum.total)+(sum.custom?' + расчёт':''):'По запросу';
+  $('cart-note').textContent=[noteFor(sum),'Цены и сроки подтверждает типография.'].filter(Boolean).join(' ');
+  $('cart-status').textContent=message;
+}
+function commitCart(message) {
+  saveCart();
+  renderCart(message);
+  renderQuote();
+}
+function leaveEdit() {
+  if(editIndex!==null) configs[product]=beforeEdit;
+  editIndex=null;
+  beforeEdit=null;
+}
+$('categories').addEventListener('click',event=>{
+  const button=event.target.closest('[data-product]');
+  if(!button || button.dataset.product===product) return;
+  leaveEdit();
+  product=button.dataset.product;
+  renderBuilder();
+});
+$('product-fields').addEventListener('input',event=>{
+  const {name,value}=event.target;
+  configs[product][name]=value;
+  if(name==='material') {
+    renderBuilder();
+    $('product-fields').querySelector('[name=material]').focus();
+  } else renderQuote();
+});
+$('builder-form').addEventListener('submit',event=>{
+  event.preventDefault();
+  if($('add').disabled) return;
+  const line={type:product,config:{...configs[product]}};
+  const editing=editIndex!==null;
+  if(editing) cart[editIndex]=line;
+  else cart.push(line);
+  leaveEdit();
+  if(editing) { renderBuilder(); $('add').focus(); }
+  commitCart();
+  $('builder-message').hidden=false;
+  $('builder-status').textContent=(editing?'Позиция обновлена.':'Позиция добавлена.')+' В заказе '+num.format(cart.length)+' поз.';
+});
+$('cancel').addEventListener('click',()=>{
+  leaveEdit();
+  renderBuilder();
+  $('add').focus();
+});
+$('cart-list').addEventListener('click',event=>{
+  const button=event.target.closest('[data-action]');
+  if(!button) return;
+  const index=Number(button.dataset.index);
+  const item=cart[index];
+  if(button.dataset.action==='edit') {
+    leaveEdit();
+    product=item.type;
+    editIndex=index;
+    beforeEdit=configs[product];
+    configs[product]={...item.config};
+    renderBuilder();
+    $('product-fields').querySelector('select,input').focus();
+    return;
+  }
+  if(button.dataset.action==='repeat') {
+    if(cart.length>=50) return;
+    cart.push({type:item.type,config:{...item.config}});
+    commitCart('Копия позиции добавлена.');
+  } else {
+    if(editIndex===index) { leaveEdit(); renderBuilder(); }
+    else if(editIndex!==null && index<editIndex) editIndex--;
+    cart.splice(index,1);
+    commitCart('Позиция удалена.');
+  }
+  ($('cart-list').querySelector('[data-index="'+Math.min(index,cart.length-1)+'"][data-action="'+button.dataset.action+'"]') || $('example')).focus();
+});
+$('example').addEventListener('click',()=>{
+  if(cart.length) return;
+  cart=Object.entries({
+    cards:{},flyers:{},brochures:{format:'a6',quantity:'100'},stickers:{material:'opaque',area:'2',cut:'cut'}
+  }).map(([type,config])=>({type,config:normalized(type,config)}));
+  commitCart('Пример добавлен. Любую позицию можно изменить.');
+  $('draft-open').focus();
+});
+
+function updateDraft() {
+  const sum=summarize();
+  const lines=['Здравствуйте! Прошу подтвердить стоимость и сроки печати.',''];
+  for(const [index,{type,config}] of cart.entries()) {
+    const p=products[type];
+    const details=detailList(type,config).map(([key,value])=>key+': '+value);
+    if(type!=='stickers') details.unshift(p.spec);
+    const quote=quoteFor(type,config);
+    lines.push((index+1)+'. '+p.name,...details,'Стоимость: '+(quote.total===null?'по запросу':rub(quote.total)),'');
+  }
+  lines.push('Предварительная смета: '+(sum.priced?rub(sum.total)+(sum.custom?' + позиции по запросу':''):'по запросу'));
+  const note=noteFor(sum);
+  if(note) lines.push(note);
+  const date=$('requested-date').value;
+  if(date) lines.push('Желаемая дата готовности: '+date.split('-').reverse().join('.'));
+  if($('delivery').value) lines.push('Получение: '+$('delivery').value);
+  if($('comment').value.trim()) lines.push('Комментарий: '+$('comment').value.trim());
+  $('draft').value=lines.join('\n');
+  $('draft-status').textContent='';
+}
+$('draft-open').addEventListener('click',()=>{ updateDraft(); $('request').showModal(); });
+for(const id of ['requested-date','delivery','comment']) $(id).addEventListener('input',updateDraft);
+$('copy').addEventListener('click',async()=>{
+  try {
+    await navigator.clipboard.writeText($('draft').value);
+    $('draft-status').textContent='Заявка скопирована.';
+  } catch {
+    $('draft').focus();
+    $('draft').select();
+    $('draft-status').textContent='Текст выделен. Скопируйте его вручную.';
   }
 });
-update();
+$('download').addEventListener('click',()=>{
+  const url=URL.createObjectURL(new Blob(['\uFEFF'+$('draft').value],{type:'text/plain;charset=utf-8'}));
+  const link=make('a');
+  link.href=url;
+  link.download='Print71-smeta.txt';
+  link.click();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+  $('draft-status').textContent='Смета подготовлена к скачиванию.';
+});
+renderBuilder();
+renderCart();
 </script>
 </body>
 </html>
